@@ -1,36 +1,16 @@
 import React from 'react';
-import './App.css';
-import logo from './logo.svg';
+import { Grid } from '@material-ui/core';
+import Header from './components/Header';
+import StatusPanel from './components/StatusPanel';
+import CalendarEditor from './components/CalendarEditor';
+import Timer from './components/Timer';
 
-function App() {
-
-    function testBackend() {
-        fetch('/api/test')
-            .then((res) => console.log(res));
-    }
-
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo}
-                     className="App-logo"
-                     alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-
-                <button onClick={testBackend}>Test BE</button>
-            </header>
-        </div>
-    );
-}
-
-export default App;
+export default () =>
+    <Grid container style={{ padding: 10 }}>
+        <Header/>
+        <StatusPanel/>
+        <Grid item xs={6}>
+            <Timer/>
+        </Grid>
+        <CalendarEditor/>
+    </Grid>;
