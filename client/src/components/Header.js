@@ -9,7 +9,7 @@ export default () =>
             <img src='/logo.png' alt=''/>
         </Grid>
         <Grid item style={styles.username}>
-            <div>{username}</div>
+            <div data-test='user-name'>{username}</div>
         </Grid>
     </Grid>
 

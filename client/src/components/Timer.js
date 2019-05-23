@@ -16,7 +16,7 @@ export default ({ onStop }) => {
                 <LinearProgress variant='determinate' value={30}/>
             </Grid>
             <Grid item>
-                <Button onClick={toggleTimer}>{running ? 'Stop' : 'Start'}</Button>
+                <Button onClick={toggleTimer} data-test='timer-btn'>{running ? 'Stop' : 'Start'}</Button>
             </Grid>
         </Grid>
     )

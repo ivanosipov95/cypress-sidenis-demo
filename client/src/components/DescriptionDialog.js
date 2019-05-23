@@ -8,7 +8,7 @@ export default ({ open, onClose }) => {
     const [description, updateDescription] = useState('');
 
     return (
-        <Dialog open={open} onClose={onClose} data-test='dialog'>
+        <Dialog open={open} onClose={() => onClose()} data-test='dialog'>
             <DialogTitle>Add description</DialogTitle>
             <DialogContent>
                 <Grid item>
@@ -18,11 +18,15 @@ export default ({ open, onClose }) => {
                         value={description}
                         onChange={ev => updateDescription(ev.target.value)}
                         margin="normal"
+                        data-test='input'
                     />
                 </Grid>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => onClose(description)} color="primary" autoFocus>
+                <Button onClick={() => onClose(description)}
+                        color="primary"
+                        autoFocus
+                        data-test='accept'>
                     Agree
                 </Button>
             </DialogActions>
