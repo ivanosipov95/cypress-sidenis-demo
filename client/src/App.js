@@ -21,16 +21,22 @@ export default () => {
     };
 
     return (
-        <Grid container style={{ padding: 10 }}>
-            <Header/>
+        <Grid container style={styles.root}>
+            <Header style={styles.header}/>
             <StatusPanel/>
             <Grid item xs={6}>
                 <Timer onStop={openDialog}/>
             </Grid>
-            <CalendarEditor rows={list}/>
+            <CalendarEditor rows={list} style={styles.calendar}/>
             <DescriptionDialog open={dialogConf.isOpen}
                                secondsSpent={dialogConf.timeSpent}
                                onClose={handleDialogClose}/>
         </Grid>
     );
 }
+
+const styles = {
+    root: { padding: 10 },
+    header: { margin: '10px 0' },
+    calendar: { marginTop: 20 }
+};

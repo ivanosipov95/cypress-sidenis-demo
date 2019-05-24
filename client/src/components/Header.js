@@ -3,8 +3,8 @@ import { Grid } from '@material-ui/core';
 
 const username = 'Vasiliy Pupkin';
 
-export default () =>
-    <Grid container justify='space-between' alignItems='center'>
+export default ({ style }) =>
+    <Grid container justify='space-between' alignItems='center' style={style}>
         <Grid item>
             <img src='/logo.png' alt=''/>
         </Grid>
