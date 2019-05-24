@@ -13,15 +13,15 @@ export default () => {
             .then(result => result.json())
             .then(rows => updateRows(rows))
     }, []);
-    const [dialogOpened, toggleDialog] = useState(false);
-    const openDialog = () => toggleDialog(true);
-    const handleDialogClose = (description) => {
-        toggleDialog(false);
+    const [dialogConf, setDialogConf] = useState({ isOpen: false, timeSpent: null });
+    const openDialog = (timeSpent) => setDialogConf({ isOpen: true, timeSpent });
+    const handleDialogClose = (row) => {
+        setDialogConf({ ...dialogConf, isOpen: false });
 
-        if (!description)
+        if (!row)
             return;
 
-        updateRows([...rows, { id: rows.length + 1, name: 'test', description }])
+        updateRows([...rows, { id: rows.length + 1, ...row }])
     };
 
     return (
@@ -32,7 +32,9 @@ export default () => {
                 <Timer onStop={openDialog}/>
             </Grid>
             <CalendarEditor rows={rows}/>
-            <DescriptionDialog open={dialogOpened} onClose={handleDialogClose}/>
+            <DescriptionDialog open={dialogConf.isOpen}
+                               secondsSpent={dialogConf.timeSpent}
+                               onClose={handleDialogClose}/>
         </Grid>
     );
 }

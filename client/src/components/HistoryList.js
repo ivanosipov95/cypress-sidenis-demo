@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { formatTime } from "../utils/time";
 
 export default ({ rows }) =>
     <Paper style={{ width: '100%' }}>
@@ -11,7 +12,7 @@ export default ({ rows }) =>
                             {row.id}
                         </TableCell>
                         <TableCell>
-                            {row.name}
+                            {formatTime(row.time)}
                         </TableCell>
                         <TableCell data-test="description">
                             {row.description}
