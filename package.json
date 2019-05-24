@@ -2,7 +2,7 @@
   "name": "cypress-sidenis-demo",
   "version": "1.0.0",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cy": "cypress open"
   },
   "devDependencies": {
     "cypress": "^3.3.0"

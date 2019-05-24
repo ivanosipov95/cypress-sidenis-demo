@@ -13,7 +13,7 @@ export default ({ secondsSpent, open, onClose }) => {
             <DialogTitle>Add a description</DialogTitle>
             <DialogContent>
                 <Grid item>
-                    Time spend: {formatTime(secondsSpent)}
+                    Time spent: {formatTime(secondsSpent)}
                 </Grid>
                 <Grid item>
                     <TextField
