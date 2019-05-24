@@ -21,3 +21,15 @@ export function useInterval(callback, ms = 1000) {
 
     return [isOn, toggleInterval];
 }
+
+export function useHistory() {
+    const [list, setList] = useState([]);
+    const addNew = item => setList([...list, item]);
+    useEffect(() => {
+        fetch('/api/history')
+            .then(result => result.json())
+            .then(list => setList(list))
+    }, []);
+
+    return [list, addNew];
+}

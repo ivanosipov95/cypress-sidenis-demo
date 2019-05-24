@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 import Header from './components/Header';
 import StatusPanel from './components/StatusPanel';
 import CalendarEditor from './components/CalendarEditor';
 import Timer from './components/Timer';
 import DescriptionDialog from "./components/DescriptionDialog";
+import { useHistory } from "./utils/hooks";
 
 export default () => {
-    const [rows, updateRows] = useState([]);
-    useEffect(() => {
-        fetch('/api/history')
-            .then(result => result.json())
-            .then(rows => updateRows(rows))
-    }, []);
     const [dialogConf, setDialogConf] = useState({ isOpen: false, timeSpent: null });
+    const [list, addRow] = useHistory();
     const openDialog = (timeSpent) => setDialogConf({ isOpen: true, timeSpent });
     const handleDialogClose = (row) => {
         setDialogConf({ ...dialogConf, isOpen: false });
@@ -21,7 +17,7 @@ export default () => {
         if (!row)
             return;
 
-        updateRows([...rows, { id: rows.length + 1, ...row }])
+        addRow({ id: list.length + 1, ...row });
     };
 
     return (
@@ -31,7 +27,7 @@ export default () => {
             <Grid item xs={6}>
                 <Timer onStop={openDialog}/>
             </Grid>
-            <CalendarEditor rows={rows}/>
+            <CalendarEditor rows={list}/>
             <DescriptionDialog open={dialogConf.isOpen}
                                secondsSpent={dialogConf.timeSpent}
                                onClose={handleDialogClose}/>
