@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import axios from 'axios';
 
 export function useInterval(callback, ms = 1000) {
     const [isOn, setIsOn] = useState(false);
@@ -26,10 +27,22 @@ export function useHistory() {
     const [list, setList] = useState([]);
     const addNew = item => setList([...list, item]);
     useEffect(() => {
-        fetch('/api/history')
-            .then(result => result.json())
+        axios.get('/api/history')
+            .then(({ data }) => data)
             .then(list => setList(list))
     }, []);
 
     return [list, addNew];
+}
+
+export function useBalance() {
+    const [balance, setBalance] = useState({ lastWeek: null, total: null });
+
+    useEffect(() => {
+        axios.get('/api/balance')
+            .then(({ data }) => data)
+            .then(balance => setBalance(balance));
+    }, []);
+
+    return balance;
 }

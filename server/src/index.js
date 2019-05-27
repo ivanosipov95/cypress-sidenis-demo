@@ -11,6 +11,6 @@ const history = [
 
 app.get('/api/test', (req, res) => res.json({ text: 'is tested' }));
 app.get('/api/history', (req, res) => res.json(history).end());
-app.get('/api/balance', (req, res) => res.json({ lastWeek: 12, total: -1 }).end());
+app.get('/api/balance', (req, res) => res.json({ lastWeek: 12, total: -1 }));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

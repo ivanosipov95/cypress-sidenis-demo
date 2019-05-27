@@ -1,13 +1,13 @@
 import React from 'react'
 import { Paper } from '@material-ui/core';
 
-export default () =>
-    <Paper>
+export default ({ total, lastWeek }) =>
+    <Paper data-test='balance'>
         <div style={styles.container}>
-            <span>Balance</span>
+            <span data-test='title'>Balance</span>
             <hr/>
-            total: 1 hour<br/>
-            last mouth: -10 hours
+            <div data-test='total'>total: {total || 'unknown'}</div>
+            <div data-test='last-week'>last week: {lastWeek}</div>
         </div>
     </Paper>
 

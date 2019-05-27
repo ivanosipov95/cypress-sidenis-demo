@@ -5,11 +5,13 @@ import StatusPanel from './components/StatusPanel';
 import CalendarEditor from './components/CalendarEditor';
 import Timer from './components/Timer';
 import DescriptionDialog from "./components/DescriptionDialog";
-import { useHistory } from "./utils/hooks";
+import { useBalance, useHistory } from "./utils/hooks";
+import Balance from "./components/Balance";
 
 export default () => {
     const [dialogConf, setDialogConf] = useState({ isOpen: false, timeSpent: null });
     const [list, addRow] = useHistory();
+    const balance = useBalance();
     const openDialog = (timeSpent) => setDialogConf({ isOpen: true, timeSpent });
     const handleDialogClose = (row) => {
         setDialogConf({ ...dialogConf, isOpen: false });
@@ -24,8 +26,13 @@ export default () => {
         <Grid container style={styles.root}>
             <Header style={styles.header}/>
             <StatusPanel/>
-            <Grid item xs={6}>
-                <Timer onStop={openDialog}/>
+            <Grid container justify='space-between'>
+                <Grid item xs={6}>
+                    <Timer onStop={openDialog}/>
+                </Grid>
+                <Grid item>
+                    {balance && <Balance lastWeek={balance.lastWeek} total={balance.total}/>}
+                </Grid>
             </Grid>
             <CalendarEditor rows={list} style={styles.calendar}/>
             <DescriptionDialog open={dialogConf.isOpen}
