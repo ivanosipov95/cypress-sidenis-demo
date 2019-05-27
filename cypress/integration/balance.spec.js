@@ -8,7 +8,7 @@ describe('Balance', () => {
             });
     });
 
-    it.only('should display balance block on the home page', () => {
+    it('should display balance block on the home page', () => {
         const lastWeek = 1;
         const total = 100;
         cy.server();
