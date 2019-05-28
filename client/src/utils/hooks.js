@@ -46,3 +46,15 @@ export function useBalance() {
 
     return balance;
 }
+
+export function useUser() {
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        axios.get('/api/user')
+            .then(({ data }) => data)
+            .then(user => setUser(user));
+    }, []);
+
+    return user;
+}

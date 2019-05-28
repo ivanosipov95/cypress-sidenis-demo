@@ -1,17 +1,21 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { useUser } from "../utils/hooks";
 
-const username = 'Vasiliy Pupkin';
+export default ({ style }) => {
+    const user = useUser();
 
-export default ({ style }) =>
-    <Grid container justify='space-between' alignItems='center' style={style}>
-        <Grid item>
-            <img src='/logo.png' alt=''/>
+    return (
+        <Grid container justify='space-between' alignItems='center' style={style}>
+            <Grid item>
+                <img src='/logo.png' alt=''/>
+            </Grid>
+            <Grid item style={styles.username}>
+                {user && <div data-test='user-name'>{user.name}</div>}
+            </Grid>
         </Grid>
-        <Grid item style={styles.username}>
-            <div data-test='user-name'>{username}</div>
-        </Grid>
-    </Grid>
+    );
+}
 
 const styles = {
     username: {

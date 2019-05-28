@@ -9,19 +9,18 @@ describe('Timemaster', () => {
             .should('contain', 'Vasiliy Puaaki')
     });
 
-    it.only('should add history row', () => {
+    it('should add history row', () => {
         cy.visit('/');
 
         startTimer();
         stopTimer();
 
-        addDescription('test desc')
+        addDescription('test desc');
 
         cy.get('[data-test=history-row]')
             .contains('[data-test=description]', 'test desc')
             .should('exist');
-    })
-
+    });
 
     it('it does not append new line', () => {
 
