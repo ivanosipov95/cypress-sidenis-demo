@@ -4,26 +4,34 @@ describe('Timemaster', () => {
         cy.visit('http://localhost:3000');
     });
 
-    it.only('should display user name', () => {
+    it('should display user name', () => {
         cy.get('[data-test=user-name]')
             .contains('Vasiliy Pupkin');
     });
 
-    it('should add history row', () => {
-        cy.visit('/');
+    it('should add new history row', () => {
+        startTimer();
+        stopTimer();
+
+        addDescription('test description');
+        accept();
+
+        cy.get('[data-test=history-row]')
+            .contains('[data-test=description]', 'test description')
+            .should('exist');
+    });
+
+    it(`it shouldn't add new history row`, () => {
+        const initialRows = cy.get('[data-test=history-row]');
 
         startTimer();
         stopTimer();
 
-        addDescription('test desc');
+        addDescription('test description');
+        reject();
 
         cy.get('[data-test=history-row]')
-            .contains('[data-test=description]', 'test desc')
-            .should('exist');
-    });
-
-    it('it does not append new line', () => {
-
+            .should('to.have.eql.length', initialRows);
     });
 });
 
@@ -39,9 +47,15 @@ function stopTimer() {
 
 function addDescription(description) {
     cy.get('[data-test=input] input')
-        .type(description)
-        .blur();
+        .type(description);
+}
 
+function accept() {
     cy.get('[data-test=accept]')
+        .click();
+}
+
+function reject() {
+    cy.get('[data-test=reject]')
         .click();
 }

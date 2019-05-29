@@ -31,7 +31,14 @@ export default ({ secondsSpent, open, onClose }) => {
                         color="primary"
                         autoFocus
                         data-test='accept'>
-                    Agree
+                    Accept
+                </Button>
+
+                <Button onClick={() => onClose()}
+                        color="primary"
+                        autoFocus
+                        data-test='reject'>
+                    Reject
                 </Button>
             </DialogActions>
         </Dialog>
