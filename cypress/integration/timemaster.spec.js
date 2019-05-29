@@ -1,49 +1,61 @@
 describe('Timemaster', () => {
 
-    it('should display user name', () => {
-        cy.visit('/');
-
-
-        //TODO: bdd assertions - show on original site, talk about tool a bit
-        cy.get('[data-test=user-name]')
-            .should('contain', 'Vasiliy Puaaki')
+    beforeEach(() => {
+        cy.visit('http://localhost:3000');
     });
 
-    it('should add history row', () => {
-        cy.visit('/');
+    it('should display user name', () => {
+        cy.get('[data-test=user-name]')
+            .contains('Vasiliy Pupkin');
+    });
+
+    it('should add new history row', () => {
+        startTimer();
+        stopTimer();
+
+        addDescription('test description');
+        accept();
+
+        cy.get('[data-test=history-row]')
+            .contains('[data-test=description]', 'test description')
+            .should('exist');
+    });
+
+    it(`it shouldn't add new history row`, () => {
+        const initialRows = cy.get('[data-test=history-row]');
 
         startTimer();
         stopTimer();
 
-        addDescription('test desc');
+        addDescription('test description');
+        reject();
 
         cy.get('[data-test=history-row]')
-            .contains('[data-test=description]', 'test desc')
-            .should('exist');
+            .should('to.have.eql.length', initialRows);
     });
-
-    it('it does not append new line', () => {
-
-    })
 });
-
 
 function startTimer() {
     cy.get('[data-test=timer-btn]')
-        .click()
+        .click();
 }
 
 function stopTimer() {
     cy.get('[data-test=timer-btn]')
-        .click()
+        .click();
 }
 
 function addDescription(description) {
     cy.get('[data-test=input] input')
-        .type(description)
-        .blur();
-
-    cy.get('[data-test=accept]')
-        .click()
+        .type(description);
 }
 
+function accept() {
+    cy.get('[data-test=accept]')
+        .click();
+}
+
+function reject() {
+    cy.get('[data-test=reject]')
+        .click();
+}
