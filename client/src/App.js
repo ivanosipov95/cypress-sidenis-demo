@@ -31,7 +31,7 @@ export default () => {
                     <Timer onStop={openDialog}/>
                 </Grid>
                 <Grid item>
-                    {balance && <Balance lastWeek={balance.lastWeek} total={balance.total}/>}
+                    <Balance total={balance.total} lastWeek={balance.lastWeek}/>
                 </Grid>
             </Grid>
             <CalendarEditor rows={list} style={styles.calendar}/>
