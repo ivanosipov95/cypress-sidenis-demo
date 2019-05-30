@@ -25,14 +25,4 @@ describe('Balance', () => {
             .should('contain', 'total: 1000')
             .and('contain', 'last week: 2');
     });
-
-    it('should return authorized user data', () => {
-        cy.setCookie('token', JSON.stringify({ name: 'Sergey Ivanov' }));
-
-        cy.visit('/');
-
-        cy.get('[data-test=user-name]')
-            .should('contain', 'Sergey Ivanov')
-    });
-
 });
