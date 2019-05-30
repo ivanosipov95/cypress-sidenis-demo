@@ -27,18 +27,18 @@ export default ({ secondsSpent, open, onClose }) => {
                 </Grid>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => onClose({ time: secondsSpent, description })}
-                        color="primary"
-                        autoFocus
-                        data-test='accept'>
-                    Accept
-                </Button>
-
                 <Button onClick={() => onClose()}
                         color="primary"
                         autoFocus
                         data-test='reject'>
                     Reject
+                </Button>
+
+                <Button onClick={() => onClose({ time: secondsSpent, description })}
+                        color="primary"
+                        autoFocus
+                        data-test='accept'>
+                    Accept
                 </Button>
             </DialogActions>
         </Dialog>
