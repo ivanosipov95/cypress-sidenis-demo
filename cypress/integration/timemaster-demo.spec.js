@@ -4,11 +4,7 @@ describe('Timemaster', () => {
 
     });
 
-    it('should add history row', () => {
-
-    });
-
-    it('it does not append new line', () => {
-
-    })
+    // it('should add history row', () => {
+    //
+    // });
 });
