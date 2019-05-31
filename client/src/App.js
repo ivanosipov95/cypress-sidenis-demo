@@ -30,9 +30,9 @@ export default () => {
                 <Grid item xs={6}>
                     <Timer onStop={openDialog}/>
                 </Grid>
-                <Grid item>
-                    <Balance total={balance.total} lastWeek={balance.lastWeek}/>
-                </Grid>
+                {/*<Grid item>*/}
+                    {/*<Balance total={balance.total} lastWeek={balance.lastWeek}/>*/}
+                {/*</Grid>*/}
             </Grid>
             <CalendarEditor rows={list} style={styles.calendar}/>
             <DescriptionDialog open={dialogConf.isOpen}
